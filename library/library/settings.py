@@ -32,18 +32,18 @@ import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&psk#na5l=p3q8_a+-$4w1f^lt3lx1c@d*p4x$ymm_rn7pwb87')
 
 
-# SECURITY WARNING: don't run with debug turned on in production! alright
+# SECURITY WARNING: don't run with debug turned on when in production! alright
 #DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
 #ALLOWED_HOSTS = [, '127.0.0.1']
 
-ALLOWED_HOSTS = ['https://djangolocallibrary-production-5525.up.railway.app/', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # CSRF_TRUSTED_ORIGINS = ['https://djangolocallibrary-production-7f3a.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://djangolocallibrary-production-5525.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = []
 
 
 
