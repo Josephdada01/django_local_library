@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-&psk#na5l=p3q8
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-#ALLOWED_HOSTS = ['djangolocallibrary-production-1c87.up.railway.app', '127.0.0.1']
+#ALLOWED_HOSTS = [, '127.0.0.1']
 
 ALLOWED_HOSTS = ['https://djangolocallibrary-production-1b0f.up.railway.app/', '127.0.0.1']
 
