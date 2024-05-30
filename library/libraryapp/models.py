@@ -50,10 +50,12 @@ class Book(models.Model):
     # Genre class has already been defined so we can specify the object above.
     genre = models.ManyToManyField(
         Genre, help_text="Select a genre for this book")
+    
+    language = models.ForeignKey(
+        'Language', on_delete=models.SET_NULL, null=True)
 
-    def __str__(self):
-        """String for representing the Model object."""
-        return self.title
+    class Meta:
+        ordering = ['title', 'author']
 
     def get_absolute_url(self):
         """Returns the URL to access a detail record for this book."""
@@ -65,6 +67,10 @@ class Book(models.Model):
         return ', '.join(genre.name for genre in self.genre.all()[:3])
 
     display_genre.short_description = 'Genre'
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.title
 
 
 
@@ -79,6 +85,11 @@ class BookInstance(models.Model):
     due_back = models.DateField(null=True, blank=True)
 
     borrower = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+
+    @property
+    def is_overdue(self):
+        """Determines if the book is overdue based on due date and current date."""
+        return bool(self.due_back and date.today() > self.due_back)
 
     LOAN_STATUS = (
         ('m', 'Maintenance'),
@@ -99,12 +110,10 @@ class BookInstance(models.Model):
         ordering = ['due_back']
 
         permissions = (("can_mark_returned", "Set book as returned"),)
-
-    @property
-    def is_overdue(self):
-        """Determines if the book is overdue based on due date and current date."""
-        return bool(self.due_back and date.today() > self.due_back)
     
+    def get_absolute_url(self):
+        """Returns the url to access a particular book instance."""
+        return reverse('bookinstance-detail', args=[str(self.id)])
 
     def __str__(self):
         """String for representing the Model object."""
@@ -143,3 +152,12 @@ class Language(models.Model):
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
         return self.name
+    
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                Lower('name'),
+                name='language_name_case_insensitive_unique',
+                violation_error_message = "Language already exists (case insensitive match)"
+            ),
+        ]

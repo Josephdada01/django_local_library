@@ -13,7 +13,7 @@ urlpatterns += [
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
 urlpatterns += [
-    path('alllonedbook/', views.AllLoanedBooksListView.as_view(), name='all-borrowed'),
+    path('allloanedbooks/', views.AllLoanedBooksListView.as_view(), name='all-borrowed'),
 ]
 
 urlpatterns += [
@@ -31,3 +31,27 @@ urlpatterns += [
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book-delete'),
 ]
 
+# Add URLConf to list, view, create, update, and delete languages
+urlpatterns += [
+    path('languages/', views.LanguageListView.as_view(), name='languages'),
+    path('language/<int:pk>', views.LanguageDetailView.as_view(),
+         name='language-detail'),
+    path('language/create/', views.LanguageCreate.as_view(), name='language-create'),
+    path('language/<int:pk>/update/',
+         views.LanguageUpdate.as_view(), name='language-update'),
+    path('language/<int:pk>/delete/',
+         views.LanguageDelete.as_view(), name='language-delete'),
+]
+
+# Add URLConf to list, view, create, update, and delete bookinstances
+urlpatterns += [
+    path('bookinstances/', views.BookInstanceListView.as_view(), name='bookinstances'),
+    path('bookinstance/<uuid:pk>', views.BookInstanceDetailView.as_view(),
+         name='bookinstance-detail'),
+    path('bookinstance/create/', views.BookInstanceCreate.as_view(),
+         name='bookinstance-create'),
+    path('bookinstance/<uuid:pk>/update/',
+         views.BookInstanceUpdate.as_view(), name='bookinstance-update'),
+    path('bookinstance/<uuid:pk>/delete/',
+         views.BookInstanceDelete.as_view(), name='bookinstance-delete'),
+]
