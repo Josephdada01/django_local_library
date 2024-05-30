@@ -40,7 +40,7 @@ urlpatterns += [
     path('genre/<int:pk>/delete/', views.GenreDelete.as_view(), name='genre-delete'),
 ]
 
-# Add URLConf to list, view, create, update, and delete languages
+# Add URLConf to list, view, create, update, and delete languages, okay
 urlpatterns += [
     path('languages/', views.LanguageListView.as_view(), name='languages'),
     path('language/<int:pk>', views.LanguageDetailView.as_view(),
