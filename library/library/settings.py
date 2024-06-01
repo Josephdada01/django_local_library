@@ -39,11 +39,11 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 #ALLOWED_HOSTS = [, '127.0.0.1']
 
-ALLOWED_HOSTS = ['djangolocallibrary-production-dde5.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['https://djangolocallibrary-production-dde5.up.railway.app', '127.0.0.1']
 
 # CSRF_TRUSTED_ORIGINS = ['https://djangolocallibrary-production-7f3a.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['djangolocallibrary-production-dde5.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://djangolocallibrary-production-dde5.up.railway.app']
 
 
 
